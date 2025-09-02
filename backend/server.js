@@ -9,22 +9,18 @@ const userRoutes = require("./routes/users");
 
 const app = express();
 
-// Allowed origins for frontend
+// ✅ Allowed origins (frontend deployed + localhost)
 const allowedOrigins = [
-  "http://localhost:3000", // local dev
-  "https://lambent-nougat-09a69e.netlify.app" // Netlify
+  "http://localhost:3000", // dev
+  process.env.FRONTEND_URL    // frontend Render URL
 ];
 
 app.use(cors({
-  origin: function (origin, callback) {
-    if (!origin || allowedOrigins.includes(origin)) {
-      callback(null, true);
-    } else {
-      callback(new Error("Not allowed by CORS"));
-    }
+  origin: function(origin, callback) {
+    if (!origin || allowedOrigins.includes(origin)) return callback(null, true);
+    callback(new Error("Not allowed by CORS"));
   },
-  credentials: true,
-  methods: ["GET", "POST", "PUT", "DELETE"]
+  credentials: true, // allow cookies / JWT
 }));
 
 app.use(express.json());
@@ -44,4 +40,4 @@ app.use((err, req, res, next) => {
 });
 
 const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`));
+app.listen(PORT, () => console.log(`🚀 Backend running on port ${PORT}`));
