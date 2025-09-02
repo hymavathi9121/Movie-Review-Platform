@@ -1,40 +1,50 @@
-require('dotenv').config();
-const path = require('path');
-const express = require('express');
-const cors = require('cors');
-const connectDB = require('./config/db');
+require("dotenv").config();
+const express = require("express");
+const cors = require("cors");
+const connectDB = require("./config/db");
 
-const authRoutes = require('./routes/auth');
-const movieRoutes = require('./routes/movies');
-const userRoutes = require('./routes/users');
+const authRoutes = require("./routes/auth");
+const movieRoutes = require("./routes/movies");
+const userRoutes = require("./routes/users");
 
 const app = express();
-app.use(cors());
+
+// ✅ Allowed origins (localhost for dev + Netlify frontend)
+const allowedOrigins = [
+  "http://localhost:3000",
+  "https://lambent-nougat-09a69e.netlify.app"
+];
+
+app.use(
+  cors({
+    origin: function (origin, callback) {
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    credentials: true,
+  })
+);
+
 app.use(express.json());
 
-// connect DB
+// Connect MongoDB
 connectDB(process.env.MONGO_URI);
 
-// routes
-app.use('/api/auth', authRoutes);
-app.use('/api/movies', movieRoutes);
-app.use('/api/users', userRoutes);
+// Routes
+app.use("/api/auth", authRoutes);
+app.use("/api/movies", movieRoutes);
+app.use("/api/users", userRoutes);
 
-// Serve frontend (React build)
-if (process.env.NODE_ENV === 'production') {
-  const frontendPath = path.join(__dirname, '../frontend/build');
-  app.use(express.static(frontendPath));
-
-  app.get('*', (req, res) => {
-    res.sendFile(path.resolve(frontendPath, 'index.html'));
-  });
-}
-
-// global error handler
+// Global error handler
 app.use((err, req, res, next) => {
   console.error(err.stack);
-  res.status(500).json({ message: 'Server Error' });
+  res.status(500).json({ message: "Server Error" });
 });
 
+// Start server
 const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+app.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`));
