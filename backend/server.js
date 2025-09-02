@@ -9,23 +9,18 @@ const userRoutes = require("./routes/users");
 
 const app = express();
 
-// ✅ Allowed origins (frontend deployed + localhost)
-const allowedOrigins = [
-  "http://localhost:3000", // dev
-  process.env.FRONTEND_URL    // frontend Render URL
-];
-
+// ✅ CORS: allow frontend local + deployed
 app.use(cors({
-  origin: function(origin, callback) {
-    if (!origin || allowedOrigins.includes(origin)) return callback(null, true);
-    callback(new Error("Not allowed by CORS"));
-  },
-  credentials: true, // allow cookies / JWT
+  origin: [
+    "http://localhost:3000",
+    process.env.FRONTEND_URL, // e.g., https://your-frontend.onrender.com
+  ],
+  credentials: true,
 }));
 
 app.use(express.json());
 
-// Connect MongoDB
+// Connect to MongoDB
 connectDB(process.env.MONGO_URI);
 
 // Routes
@@ -35,7 +30,7 @@ app.use("/api/users", userRoutes);
 
 // Global error handler
 app.use((err, req, res, next) => {
-  console.error(err.stack);
+  console.error("Server error:", err);
   res.status(500).json({ message: "Server Error" });
 });
 
