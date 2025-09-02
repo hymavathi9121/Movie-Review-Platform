@@ -1,0 +1,49 @@
+/* You can reuse Login.css styles for consistency */
+.auth-container {
+  max-width: 400px;
+  margin: 80px auto;
+  padding: 30px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background: #fdfdfd;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.auth-title {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.auth-input {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+.auth-input:focus {
+  outline: none;
+  border-color: #28a745;
+}
+
+.auth-button {
+  padding: 10px;
+  background: #28a745;
+  color: white;
+  font-weight: bold;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.auth-button:hover {
+  background: #1e7e34;
+}

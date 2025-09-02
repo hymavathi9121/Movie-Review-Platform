@@ -1,0 +1,75 @@
+.movie-detail {
+  max-width: 1200px;
+  margin: 20px auto;
+  padding: 15px;
+  color: #fff;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+.movie-detail-header {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  align-items: flex-start;
+}
+
+.movie-detail-poster {
+  width: 350px;
+  max-width: 100%;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.6);
+}
+
+.movie-info {
+  flex: 1;
+  min-width: 250px;
+}
+
+.watchlist-btn {
+  margin-top: 15px;
+  background-color: #e50914;
+  border: none;
+  color: #fff;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  transition: background 0.3s;
+}
+
+.watchlist-btn:hover {
+  background-color: #f40612;
+}
+
+.reviews-section {
+  margin-top: 40px;
+}
+
+.review-item {
+  border-bottom: 1px solid #333;
+  padding: 10px 0;
+}
+
+.review-header {
+  font-weight: bold;
+}
+
+.review-stars {
+  margin: 5px 0;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .movie-detail-header {
+    flex-direction: column;
+    align-items: center;
+  }
+  .movie-info {
+    text-align: center;
+  }
+  .watchlist-btn {
+    width: 100%;
+  }
+}

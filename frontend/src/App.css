@@ -1,0 +1,217 @@
+/* App.css */
+
+/* Reset */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  background: linear-gradient(145deg, #1f1c2c, #928dab);
+  color: #fff;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+body.dark {
+  background: linear-gradient(145deg, #0f0c1a, #3c3b52);
+  color: #f0f0f0;
+}
+
+/* Navbar */
+.navbar {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  background: rgba(30, 30, 50, 0.95);
+  backdrop-filter: blur(8px);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.7rem 2rem;
+  z-index: 100;
+  box-shadow: 0 2px 15px rgba(0,0,0,0.4);
+}
+
+.nav-logo {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #fff;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: #fff;
+  font-weight: 500;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.nav-links a:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.logout-btn {
+  background: #ff4b5c;
+  border: none;
+  color: #fff;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background 0.3s ease;
+}
+
+.logout-btn:hover {
+  background: #ff2336;
+}
+
+.theme-toggle {
+  background: transparent;
+  border: 2px solid #fff;
+  border-radius: 50%;
+  padding: 0.3rem;
+  cursor: pointer;
+  color: #fff;
+  font-size: 1rem;
+  margin-left: 0.5rem;
+  transition: all 0.3s ease;
+}
+
+.theme-toggle:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* Hamburger for mobile */
+.hamburger {
+  display: none;
+  font-size: 1.6rem;
+  cursor: pointer;
+}
+
+.nav-links.open {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 70px;
+  right: 0;
+  background: rgba(30,30,50,0.95);
+  width: 200px;
+  padding: 1rem;
+  border-radius: 0 0 0 12px;
+}
+
+/* Main container */
+.main-container {
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Responsive cards (movies, reviews) */
+.movie-card, .carousel-item, .review-item {
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.5);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.movie-card:hover, .carousel-item:hover, .review-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.6);
+}
+
+/* Buttons */
+button, .submit-review-btn, .watchlist-btn {
+  background: linear-gradient(90deg, #ff6a00, #ee0979);
+  border: none;
+  color: #fff;
+  padding: 0.6rem 1.2rem;
+  font-weight: 500;
+  cursor: pointer;
+  border-radius: 10px;
+  transition: all 0.3s ease;
+}
+
+button:hover, .submit-review-btn:hover, .watchlist-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(0,0,0,0.5);
+}
+
+/* Form inputs */
+input, textarea {
+  width: 100%;
+  padding: 0.6rem;
+  border-radius: 10px;
+  border: none;
+  margin: 0.5rem 0;
+  outline: none;
+  background: rgba(255,255,255,0.1);
+  color: #fff;
+}
+
+input::placeholder, textarea::placeholder {
+  color: rgba(255,255,255,0.7);
+}
+
+/* Reviews section */
+.reviews-section h2 {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+/* Watchlist items */
+.profile-container div a {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  margin-bottom: 0.5rem;
+  color: #fff;
+  text-decoration: none;
+}
+
+.profile-container div a:hover span {
+  text-decoration: underline;
+}
+
+/* Responsive for mobile */
+@media (max-width: 768px) {
+  .nav-links {
+    display: none;
+  }
+
+  .hamburger {
+    display: block;
+  }
+
+  .main-container {
+    padding: 1rem;
+  }
+
+  .movie-card, .carousel-item {
+    width: 100%;
+  }
+
+  .movie-detail-header {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .movie-info {
+    margin-top: 1rem;
+  }
+
+  .reviews-section {
+    padding: 1rem 0;
+  }
+}
