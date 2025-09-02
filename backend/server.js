@@ -16,17 +16,7 @@ const allowedOrigins = [
   "https://movie-review-platform-eight.vercel.app/" // Replace with your Vercel URL
 ];
 
-app.use(cors({
-  origin: function (origin, callback) {
-    if (!origin || allowedOrigins.includes(origin)) {
-      callback(null, true);
-    } else {
-      callback(new Error("Not allowed by CORS"));
-    }
-  },
-  credentials: true, // needed for cookies / auth
-  methods: ["GET", "POST", "PUT", "DELETE"]
-}));
+
 
 app.use(express.json());
 
